@@ -1,0 +1,12 @@
+services:
+
+  php-cli:
+    container_name: ${COMPOSE_PROJECT_NAME}-php-cli
+    build:
+      context: php-cli
+    volumes:
+      - ..:/app
+    ports:
+      - 8000:8000
+    entrypoint:
+      - "/app/docker/php-cli/entrypoint.sh"

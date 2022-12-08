@@ -1,0 +1,28 @@
+<html>
+<head>
+    <script>
+        const webSocket = new WebSocket('ws://localhost:8000');
+
+        webSocket.onopen = event => {
+            alert('onopen');
+            webSocket.send("Hello Web Socket!");
+        };
+
+        webSocket.onmessage = event => {
+            alert('onmessage, ' + event.data);
+        };
+
+        webSocket.onclose = event => {
+            if (event.wasClean) {
+                alert(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+            } else {
+                // например, сервер убил процесс или сеть недоступна
+                // обычно в этом случае event.code 1006
+                alert('[close] Соединение прервано');
+            }
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
